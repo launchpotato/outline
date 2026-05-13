@@ -73,6 +73,10 @@ export default class AttachmentHelper {
    * @returns A valid attachment ACL
    */
   static presetToAcl(preset: AttachmentPreset) {
+    if (!env.AWS_S3_ACL) {
+      return "private";
+    }
+
     switch (preset) {
       case AttachmentPreset.Avatar:
         return "public-read";
